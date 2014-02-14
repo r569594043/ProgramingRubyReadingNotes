@@ -805,5 +805,91 @@ end
 
 
 
+def do_until(cond)
+	break if cond
+	yield
+	retry
+end
+i = 0
+
+do_until(i > 10) do
+	print i, " "
+	i += 1
+end
+
+
+[ 1, 2, 3 ].each do |x|
+	y = x + 1
+end
+[ x, y ]
+
+
+
+x = nil
+y = nil
+
+[ 1, 2, 3].each do |x|
+	y = x + 1
+end
+
+[ x, y ]
+
+
+if false
+	a = 1
+end
+
+3.times {|i| a = i}
+
+
+op_file = File.open(opfile_name, "w")
+while data = socket.read(512)
+	op_file.write(data)
+end
+
+
+op_file = File.open(opfile_name, "w")
+begin
+	while data = socket.read(512)
+		op_file.write(data)
+	end
+rescue SystemCallError
+	$stderr.print "IO failed: " + $!
+	op_file.close()
+	File.delete(opfile_name)
+	raise
+end
+
+
+begin
+	eval string
+rescue SyntaxError, NameError => boom
+	print "String doesn't compile: " + boom
+rescue StandardError => boom
+	print "Error running script: " + boom
+end
+
+
+
+
+f = File.open("testfile")
+begin
+	# .. process
+rescue
+	# .. handle error
+ensure
+	f.close unless f.nil?
+end
+
+
+
+f = File.open("testfile")
+begin
+	# .. 处理
+rescue Exception => e
+	
+end
+
+
 
 
